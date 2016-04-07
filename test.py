@@ -6,7 +6,6 @@
 
 >>> from control import *
 
->>> from view import *
 
 >>> view_menu()
 1:Run the calculator
@@ -16,7 +15,7 @@
 1:Repeat?
 2:exit
 
->>> view_nWeekTreinings()
+>>> view_n_week_trainings()
 1:Don't train
 2:Do fitness 3 times a week
 3:Do fitness 5 times a week
@@ -31,7 +30,7 @@ Enter your weight
 >>> incorrect_view("height")
 enter correct height
 
->>> calculation(97,182,20,chooseNumberOfT(4))
+>>> calculation(97,182,20,choose_number_of_t(4))
 2862
 
 >>> weight(input())
@@ -43,19 +42,19 @@ enter correct height
 >>> age(input())
 20
 
->>> chooseNumberOfT(1)
+>>> choose_number_of_t(1)
 1.2
 
->>> chooseNumberOfT(6)
+>>> choose_number_of_t(6)
 1.725
 
->>> chooseNumberOfT(5)
+>>> choose_number_of_t(5)
 1.6375
 
->>> chooseNumberOfT(4)
+>>> choose_number_of_t(4)
 1.55
 
->>> chooseNumberOfT(3)
+>>> choose_number_of_t(3)
 1.4625
 
 >>> count()

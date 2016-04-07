@@ -1,13 +1,12 @@
-from os import system
-
 def view_menu():
     """
 
     This function that print on the screen start menu
     """
-    #system('clear')
+    # system('clear')
     print """1:Run the calculator
 2:exit"""
+
 
 def view_1menu():
     """
@@ -17,12 +16,13 @@ def view_1menu():
     print """1:Repeat?
 2:exit"""
 
-def view_nWeekTreinings():
+
+def view_n_week_trainings():
     """
     this function print on hte screen
 
     """
-    #system('clear')
+    # system('clear')
     print """1:Don't train
 2:Do fitness 3 times a week
 3:Do fitness 5 times a week
@@ -32,13 +32,13 @@ def view_nWeekTreinings():
 7:Don't train"""
 
 
-
 def enter_view(a=""):
     """
 
     :param a:
     """
-    print "Enter your",a
+    print "Enter your", a
+
 
 def incorrect_view(a=""):
     """
@@ -46,5 +46,5 @@ def incorrect_view(a=""):
     :param a:
     :return:
     """
-    print "enter correct",a
+    print "enter correct", a
 
