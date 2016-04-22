@@ -10,12 +10,10 @@ class LastResultsEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, obj)
 
 
-def write(obj, filename='./json.json'):
-    with open(filename, 'wt') as f:
+def write(obj, f):
         json.dump(obj, f, cls=LastResultsEncoder)
 
 
-def read(filename='./json.json'):
-    with open(filename, 'r') as f:
+def read(f):
         res = json.load(f)
         return model.LastResults(res["lastResult"])

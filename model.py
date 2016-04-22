@@ -6,7 +6,7 @@ class LastResults:
         self.lastResult.append(rez)
 
     def print_last_res(self):
-        print self.lastResult
+        print (self.lastResult)
 
 
 def weight(input_weight):

@@ -1,23 +1,25 @@
-from os import system
 from model import *
 from view import *
 import ser_json
 import ser_pickle
 import ser_yaml
-import ConfigParser
+import configparser
 
 lastRez = LastResults()
-configParser = ConfigParser.ConfigParser()
+configParser = configparser.ConfigParser()
 
 
 def backup():
     configParser.read("./config.ini")
     if configParser.getboolean("Backup_Restore", "backup_to_yaml"):
-        ser_yaml.write(lastRez)
+        with open('./yaml.yaml', 'wt') as f:
+            ser_yaml.write(lastRez, f)
     if configParser.getboolean("Backup_Restore", "backup_to_json"):
-        ser_json.write(lastRez, )
+        with open('./json.json', 'wt') as f:
+            ser_json.write(lastRez, f)
     if configParser.getboolean("Backup_Restore", "backup_to_pickle"):
-        ser_pickle.write(lastRez)
+        with open('./pickle.pickle', 'wb') as f:
+            ser_pickle.write(lastRez, f)
 
 
 def restore():
@@ -25,11 +27,14 @@ def restore():
     configParser.read("./config.ini")
     restore_from = configParser.get("Backup_Restore", "restore_from")
     if restore_from == "yaml":
-        lastRez = ser_yaml.read()
+        with open('./yaml.yaml', 'r') as f:
+            return ser_yaml.read(f)
     if restore_from == "json":
-        lastRez = ser_json.read()
+        with open('./json.json', 'r') as f:
+            return ser_json.read(f)
     if restore_from == "pickle":
-        lastRez = ser_pickle.read()
+        with open('./pickle.pickle', 'rb') as f:
+            return ser_pickle.read(f)
 
 
 def count():
@@ -37,17 +42,18 @@ def count():
     This function calculated your calories
     :return:calories
     """
-    # lastRez=restore()
+    global lastRez
+    lastRez = restore()
     # system('clear')
     enter_view("weight")
-    weight_value = weight(input())
+    weight_value = weight(int(input()))
     enter_view("height")
-    height_value = height(input())
+    height_value = height(int(input()))
     enter_view("age")
-    age_value = age(input())
+    age_value = age(int(input()))
     # system('clear')
-    view_n_week_trainings()
-    factor = choose_number_of_t(input())
+    view_nWeekTreinings()
+    factor = choose_number_of_t(int(input()))
     rz = calculation(weight_value, height_value, age_value, factor)
     lastRez.add_result(rz)
     backup()
@@ -61,12 +67,12 @@ def menu_listener():
     """
     while True:
         view_menu()
-        input_value = input()
+        input_value = int(input())
         if input_value == 1:
             result = count()
-            print "Quantity-", result
+            print("Quantity-" + str(result))
             view_1menu()
-            input_value = input()
+            input_value = int(input())
             if input_value == 2:
                 # system('clear')
                 return
@@ -74,4 +80,4 @@ def menu_listener():
             # system("clear")
             return
         else:
-            print "Choose correct line"
+            print("Choose correct line")
